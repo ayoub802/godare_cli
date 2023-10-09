@@ -136,7 +136,6 @@ const Livraison1 = ({ navigation }) => {
                           }}
                           placeholder='Téléphone'
                           withShadow
-                          autoFocus
                           containerStyle={{width: "100%" ,shadowColor: "transparent",height: 48 ,backgroundColor: "#fff", borderWidth: 1, borderColor: "#000", borderRadius: 10}}
                           textInputStyle={{ backgroundColor: "transparent", top: 7,left: 40 ,  position: "absolute"}}
                           textContainerStyle={{backgroundColor: "transparent" ,marginTop: -10, paddingTop: 20, paddingLeft: -20}}

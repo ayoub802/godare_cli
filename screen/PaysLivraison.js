@@ -6,6 +6,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { BottomTab } from '../navigation/AppNavigation';
 import { HeaderEarth } from '../components/Header';
+import Feather from "react-native-vector-icons/Feather"
+import CoteIvoire from "../assets/images/cote_ivoire.png"
+
 const Tab = createBottomTabNavigator();
 
 const PaysLivraison = ({ navigation }) => {
@@ -13,19 +16,73 @@ const PaysLivraison = ({ navigation }) => {
   const [current, setCurrent] = useState();
   const items = [
     {
-      label: 'France',
+      label: "" ,
       value: 'france',
-      icon: () => <Image source={require('../assets/images/france.png')}/> 
+      icon: () => 
+      {
+        return (
+          <>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/france.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
+              <Feather name="arrow-up-right" size={22} color="#000"/>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/cote_ivoire.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Côte d'ivoire</Text>
+              <Feather name="arrow-down-right" size={22} color="#000"/>
+            </View>
+          </View>
+          </>
+        ) 
+      }
     },
     {
-      label: 'France',
+      label: '',
       value: 'germany',
-      icon: () => <Image source={require('../assets/images/france.png')}/> 
+      icon: () => 
+      {
+        return (
+          <>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/france.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
+              <Feather name="arrow-up-right" size={22} color="#000"/>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/mali.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Mali</Text>
+              <Feather name="arrow-down-right" size={22} color="#000"/>
+            </View>
+          </View>
+          </>
+        ) 
+      }
     },
     {
-      label: 'France',
+      label: '',
       value: 'italy',
-      icon: () => <Image source={require('../assets/images/france.png')}/> 
+      icon: () => 
+      {
+        return (
+          <>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/france.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
+              <Feather name="arrow-up-right" size={22} color="#000"/>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
+              <Image source={require('../assets/images/congo.png')}/>
+              <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Congo</Text>
+              <Feather name="arrow-down-right" size={22} color="#000"/>
+            </View>
+          </View>
+          </>
+        ) 
+      } 
     },
 
   ];
@@ -42,7 +99,7 @@ const PaysLivraison = ({ navigation }) => {
               fontFamily: 'Roboto-Medium',
               fontSize: 16,
             }}>
-            Pays de livraison
+            Pays de livraison 
           </Text>
 
           <View style={{marginTop: 16}}>
@@ -52,6 +109,8 @@ const PaysLivraison = ({ navigation }) => {
               setOpen={() => setIsOpen(!isOpen)}
               value={current}
               setValue={(val) => setCurrent(val)}
+              dropDownContainerStyle={{backgroundColor: '#fff', borderColor: "#2BA6E9", fontSize: 54}}
+              style={{ backgroundColor: "#fff", borderColor: "#2BA6E9", fontSize: 54,}}
               placeholder='Pays de Livraison'
               placeholderStyle={{color: "#86909C", fontFamily: "Roboto-Regular", fontSize: 14}}
               textStyle={{fontFamily: "Roboto-Regular", fontSize: 14}}

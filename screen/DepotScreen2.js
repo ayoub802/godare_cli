@@ -115,7 +115,7 @@ const DepotScreen2 = ({ navigation }) => {
               </View>
           </View>
 
-          <View style={{ marginTop: 10, paddingHorizontal: 16}}>
+          <View style={{ marginTop: 10, paddingHorizontal: 16, position: "relative", zIndex: -1000}}>
              <View style={{ backgroundColor: '#fff', paddingVertical: 22, paddingHorizontal: 14, borderRadius: 10}}>
                  <Text style={{fontFamily: "Poppins-Medium", fontSize: 14, color: "#000"}}>
                     Les coordonnées de la personne à contacter
@@ -134,7 +134,6 @@ const DepotScreen2 = ({ navigation }) => {
                         ref={phoneInput}
                         defaultValue={value}
                         defaultCode="FR"
-                        layout="first"
                         onChangeText={(text) => {
                         setValue(text);
                         }}
@@ -143,7 +142,6 @@ const DepotScreen2 = ({ navigation }) => {
                         }}
                         placeholder='Téléphone'
                         withShadow
-                        autoFocus
                         containerStyle={{width: "100%" ,shadowColor: "transparent",height: 48 ,backgroundColor: "#fff", borderWidth: 1, borderColor: "#000", borderRadius: 10}}
                         textInputStyle={{ backgroundColor: "transparent", top: 7,left: 40 ,  position: "absolute"}}
                         textContainerStyle={{backgroundColor: "transparent" ,marginTop: -10, paddingTop: 20, paddingLeft: -20}}

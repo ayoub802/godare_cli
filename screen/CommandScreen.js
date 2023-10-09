@@ -65,7 +65,7 @@ const CommandScreen = ({ navigation }) => {
                 <View style={{backgroundColor: "#fff", borderRadius: 10}}>
                       {
                     CommandData.map((item, index) => (
-                            <View style={{paddingHorizontal: 14, paddingTop: 17}}>
+                            <View style={{paddingHorizontal: 14, paddingTop: 17}} key={index}>
                                 <TouchableOpacity style={{flexDirection:"row", justifyContent: "space-between", alignItems: "center", paddingBottom: 17}}>
                                     <Text style={{fontSize: 14, fontFamily: "Poppins-Regular", color: "#000"}}>{item.title}</Text>
                                     <Text style={{fontSize: 14, fontFamily: "Poppins-Regular", color: "#000"}}>{item.date}</Text>

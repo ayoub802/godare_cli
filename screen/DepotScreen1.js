@@ -45,7 +45,7 @@ const DepotScreen1 = ({ navigation }) => {
                   <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
                       <Image source={CoteIvoire}/>
                       <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Regular"}}>Côte d'ivoire</Text>
-                      <Feather name="arrow-up-right" color="#fff" size={22}/>
+                      <Feather name="arrow-down-right" color="#fff" size={22}/>
                   </View>
               </View>
 
