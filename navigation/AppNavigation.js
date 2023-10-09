@@ -20,7 +20,19 @@ import ProfileScreen from '../screen/ProfileScreen';
 import DepotScreen3 from '../screen/DepotScreen3';
 import Livraison1 from '../screen/Livraison1';
 import Livraison2 from '../screen/Livraison2';
+import LoginScreen from '../screen/LoginScreen';
+import CartBancair from '../screen/CartBancair';
+import EditProfile from '../screen/EditProfile';
+import RemiseAvoirScreen from '../screen/RemiseAvoirScreen';
+import MessageScreen from '../screen/MessageScreen';
+import LanguageScreen from '../screen/LanguageScreen';
+import CommandScreen from '../screen/CommandScreen';
+import AdresseScreen from '../screen/AdresseScreen';
+import AddCardScreen from '../screen/AddCardScreen';
+
+
 const Home = createNativeStackNavigator();
+const Profile = createNativeStackNavigator();
 const AppNavigation = () => {
   return (
     <NavigationContainer>
@@ -39,7 +51,7 @@ const AppNavigation = () => {
             backgroundColor: '#2BA6E9',
           },
         }}
-         initialRouteName='HomeScreen'
+         initialRouteName='Login'
         >
         <Tab.Screen
         name='Home'
@@ -67,6 +79,8 @@ const AppNavigation = () => {
                 <Home.Screen name="DepotScreen3" component={DepotScreen3} />
                 <Home.Screen name="Livraison1" component={Livraison1} />
                 <Home.Screen name="Livraison2" component={Livraison2} />
+                <Home.Screen name="AddCardScreen" component={AddCardScreen} />
+                <Home.Screen name="Login" component={LoginScreen} />
               </Home.Navigator>
             )
           }
@@ -127,7 +141,6 @@ const AppNavigation = () => {
         </Tab.Screen>
         <Tab.Screen
         name='Profile'
-        component={ProfileScreen}
           options={{
             tabBarIcon: ({focused}) => {
               return (
@@ -142,6 +155,20 @@ const AppNavigation = () => {
             },
           }}
         >
+          {
+            () => (
+              <Profile.Navigator screenOptions={{ headerShown: false}}>
+                <Profile.Screen name='ProfileScreen' component={ProfileScreen}/>
+                <Profile.Screen name='CartBancair' component={CartBancair}/>
+                <Profile.Screen name='EditProfile' component={EditProfile}/>
+                <Profile.Screen name='RemiseAvoir' component={RemiseAvoirScreen}/>
+                <Profile.Screen name='MessageScreen' component={MessageScreen}/>
+                <Profile.Screen name='LanguageScreen' component={LanguageScreen}/>
+                <Profile.Screen name='CommandeScreen' component={CommandScreen}/>
+                <Profile.Screen name='AdresseScreen' component={AdresseScreen}/>
+              </Profile.Navigator>
+            )
+          }
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
@@ -149,41 +176,5 @@ const AppNavigation = () => {
 };
 
 const Tab = createBottomTabNavigator();
-export const BottomTab = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          left: 0,
-          elevation: 0,
-          height: 53,
-          backgroundColor: '#2BA6E9',
-        },
-      }}>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <MaterialCommunityIcons
-                  name="home-outline"
-                  size={24}
-                  color={focused ? '#fff' : '#fff'}
-                />
-              </View>
-            );
-          },
-        }}
-      />
-    </Tab.Navigator>
-  );
-};
 
 export default AppNavigation;

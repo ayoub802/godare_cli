@@ -211,7 +211,7 @@ const Livraison2 = ({ navigation }) => {
                 </View>
             </View>
             <View style={{ flex: 1, justifyContent: "flex-end", alignItems: 'center', paddingBottom: 72}}>
-              <Button title="Valider dépot au magasin" navigation={() => navigation.navigate('DepotScreen3')}/>
+              <Button title="Valider dépot au magasin" navigation={() => navigation.navigate('Login')}/>
             </View>
         </View>
     </ScrollView>
