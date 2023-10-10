@@ -8,5 +8,13 @@ const Button = ({ title, navigation }) => {
     </TouchableOpacity>
   )
 }
+export const ButtonIcon = ({ title, navigation, Icon }) => {
+  return (
+    <TouchableOpacity onPress={navigation} style={{ paddingVertical: 8, paddingHorizontal: 22,flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: "transparent",borderWidth: 1,borderColor: "#4E8FDA",color: "#4E8FDA" ,borderRadius: 25, }}>
+      <View>{Icon}</View>
+      <Text style={{fontFamily:"Poppins-Medium", fontSize: 12, color:"#4E8FDA"}}>{title}</Text>
+    </TouchableOpacity>
+  )
+}
 
 export default Button

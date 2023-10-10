@@ -1,5 +1,8 @@
 import Cat1 from "../assets/images/image_1.png"
 import Cat2 from "../assets/images/image_2.png"
+import CatShop1 from "../assets/images/boissons.png"
+import CatShop2 from "../assets/images/vétement.png"
+import CatShop3 from "../assets/images/télé.png"
 import Product1 from "../assets/images/product_1.png"
 import HeaderEarthImage from "../assets/images/earth.png"
 import Product2 from "../assets/images/product_2.png"
@@ -47,6 +50,24 @@ export const categories = [
         desc: "Lorem lorem lorem lorem lorem",
         img: Cat1,
         path:"ShoppingScreen"
+    },
+]
+
+export const shoppingCategorie = [
+    {
+        id: 1,
+        title: "Vétements et accessoires",
+        img: <Image source={CatShop2}/>
+    },
+    {
+        id: 2,
+        title: "Boissons",
+        img: <Image source={CatShop1}/>
+    },
+    {
+        id: 3,
+        title: "Téléphones et ordinateurs",
+        img: <Image source={CatShop3}/>
     },
 ]
 
