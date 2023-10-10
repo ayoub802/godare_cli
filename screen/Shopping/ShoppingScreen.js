@@ -21,17 +21,17 @@ const ShoppingScreen = () => {
     const filterList = [
         {
             id: 1,
-            icon: <Ionicons name="grid-outline" color={color} size={25}/>
+            icon: <Ionicons name="grid-outline" color="#00000033" size={25}/>
         },
         {
             id: 2,
-            icon:  <Octicons name="list-unordered" color={color} size={25}/>
+            icon:  <Octicons name="list-unordered" color="#376AED" size={25}/>
         },
     ]
   return (
     <SafeAreaView style={{ flex: 1}}>
         <ScrollView style={{ flex: 1, paddingBottom: 15}} showsVerticalScrollIndicator={false}>
-             <View style={{ flex: 1}}>
+             <View style={{ flex: 1, position: "relative"}}>
 
                 <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
                     <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>Fret par avoin</Text>
@@ -82,6 +82,7 @@ const ShoppingScreen = () => {
                         <View style={{flexDirection:"row", alignItems: "center", gap: 15}}>
                             {
                                 filterList.map((item, index) => (
+                                    
                                     <TouchableOpacity onPress={() => setActiveFilter(index)} key={index}>
                                         {item.icon}
                                     </TouchableOpacity> 
