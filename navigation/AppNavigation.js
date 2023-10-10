@@ -5,30 +5,33 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screen/HomeScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
-import PaysLivraison from '../screen/PaysLivraison';
-import DepotScreen1 from '../screen/DepotScreen1';
+import PaysLivraison from '../screen/LivraisonScreen/PaysLivraison';
+import DepotScreen1 from '../screen/DepotScreen/DepotScreen1';
 import Stepper from '../screen/Stepper';
-import DepotScreen2 from '../screen/DepotScreen2';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import Entypo from "react-native-vector-icons/Entypo"
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 import Feather from "react-native-vector-icons/Feather"
-import Search from '../screen/Search';
-import ContactScreen from '../screen/ContactScreen';
-import CartScreen from '../screen/CartScreen';
-import ProfileScreen from '../screen/ProfileScreen';
-import DepotScreen3 from '../screen/DepotScreen3';
-import Livraison1 from '../screen/Livraison1';
-import Livraison2 from '../screen/Livraison2';
-import LoginScreen from '../screen/LoginScreen';
-import CartBancair from '../screen/CartBancair';
-import EditProfile from '../screen/EditProfile';
-import RemiseAvoirScreen from '../screen/RemiseAvoirScreen';
-import MessageScreen from '../screen/MessageScreen';
-import LanguageScreen from '../screen/LanguageScreen';
-import CommandScreen from '../screen/CommandScreen';
-import AdresseScreen from '../screen/AdresseScreen';
-import AddCardScreen from '../screen/AddCardScreen';
+import Search from '../screen/Search/Search';
+import ContactScreen from '../screen/ContactScreen/ContactScreen';
+import ProfileScreen from '../screen/Profile/ProfileScreen';
+import Livraison1 from '../screen/LivraisonScreen/Livraison1';
+import LoginScreen from '../screen/Login/LoginScreen';
+import EditProfile from '../screen/Profile/EditProfile';
+import RemiseAvoirScreen from '../screen/Profile/RemiseAvoirScreen';
+import MessageScreen from '../screen/ContactScreen/MessageScreen';
+import LanguageScreen from '../screen/Profile/LanguageScreen';
+import AdresseScreen from '../screen/Profile/AdresseScreen';
+import AddCardScreen from '../screen/CartScreen/AddCardScreen';
+import DepotScreen2 from '../screen/DepotScreen/DepotScreen2';
+import DepotScreen3 from '../screen/DepotScreen/DepotScreen3';
+import Livraison2 from '../screen/LivraisonScreen/Livraison2';
+import CartBancair from '../screen/CartScreen/CartBancair';
+import CommandScreen from '../screen/Profile/CommandScreen';
+import CartScreen from '../screen/CartScreen/CartScreen';
+import VerifyCardScreen from '../screen/CartScreen/VerfiyCardScreen';
+import CommandCours from '../screen/CommandCours/CommandCours';
+import ShoppingScreen from '../screen/Shopping/ShoppingScreen';
 
 
 const Home = createNativeStackNavigator();
@@ -62,7 +65,7 @@ const AppNavigation = () => {
                   <MaterialCommunityIcons
                     name="home-outline"
                     size={24}
-                    color={focused ? '#fff' : '#fff'}
+                    color={focused ? '#fff' : '#ffffffb3'}
                   />
                 </View>
               );
@@ -80,7 +83,10 @@ const AppNavigation = () => {
                 <Home.Screen name="Livraison1" component={Livraison1} />
                 <Home.Screen name="Livraison2" component={Livraison2} />
                 <Home.Screen name="AddCardScreen" component={AddCardScreen} />
+                <Home.Screen name="VerifyCardScreen" component={VerifyCardScreen} />
+                <Home.Screen name="CommandCours" component={CommandCours} />
                 <Home.Screen name="Login" component={LoginScreen} />
+                <Home.Screen name="ShoppingScreen" component={ShoppingScreen} />
               </Home.Navigator>
             )
           }
@@ -95,7 +101,7 @@ const AppNavigation = () => {
                   <MaterialIcons
                     name="search"
                     size={24}
-                    color={focused ? '#fff' : '#fff'}
+                    color={focused ? '#fff' : '#ffffffb3'}
                   />
                 </View>
               );
@@ -105,7 +111,7 @@ const AppNavigation = () => {
         </Tab.Screen>
         <Tab.Screen
         name='mail'
-        component={ContactScreen}
+        component={MessageScreen}
           options={{
             tabBarIcon: ({focused}) => {
               return (
@@ -113,7 +119,7 @@ const AppNavigation = () => {
                   <Entypo
                     name="mail"
                     size={24}
-                    color={focused ? '#fff' : '#fff'}
+                    color={focused ? '#fff' : '#ffffffb3'}
                   />
                 </View>
               );
@@ -127,12 +133,15 @@ const AppNavigation = () => {
           options={{
             tabBarIcon: ({focused}) => {
               return (
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{alignItems: 'center', justifyContent: 'center', position: "relative"}}>
                   <SimpleLineIcons
                     name="handbag"
                     size={24}
-                    color={focused ? '#fff' : '#fff'}
+                    color={focused ? '#fff' : '#ffffffb3'}
                   />
+                  <View style={{ position: "absolute", top: -5, right: -5, backgroundColor: '#F4951A', width: 20, height: 20, justifyContent: "center", alignItems: "center", borderRadius: 50}}>
+                    <Text style={{fontSize: 12, fontFamily: "Poppins-Medium", color: "#fff"}}>2</Text>
+                  </View>
                 </View>
               );
             },
@@ -148,7 +157,7 @@ const AppNavigation = () => {
                   <Feather
                     name="user"
                     size={24}
-                    color={focused ? '#fff' : '#fff'}
+                    color={focused ? '#fff' : '#ffffffb3'}
                   />
                 </View>
               );

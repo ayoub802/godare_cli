@@ -1,10 +1,11 @@
 import { View, Text, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
-import Button from '../components/Button'
+import { HeaderEarth } from '../../components/Header'
+import Button from '../../components/Button'
 import DropDownPicker from 'react-native-dropdown-picker'
 import Textarea from 'react-native-textarea';
+import { ScrollView } from 'react-native-virtualized-view';
 
 const MessageScreen = ({ navigation }) => {
     const [isOpen2, setIsOpen2] = useState(false);
@@ -28,6 +29,7 @@ const MessageScreen = ({ navigation }) => {
     ];
   return (
     <SafeAreaView style={{ flex: 1}}>
+      <ScrollView style={{marginBottom: 20, flex: 1}} showsVerticalScrollIndicator={false}>
         <View style={{flex: 1}}>
           <HeaderEarth />
            <View style={{marginTop: 24, marginBottom: 12}}>
@@ -96,6 +98,7 @@ const MessageScreen = ({ navigation }) => {
             </View>
             </View>
         </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

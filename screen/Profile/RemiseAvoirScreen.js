@@ -1,9 +1,8 @@
 import {View, Text, ScrollView, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import {HeaderEarth} from '../components/Header';
+import {HeaderEarth} from '../../components/Header';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Table, Row, Rows, Cell, TableWrapper} from 'react-native-table-component';
-import { RenderItem, RenderItemCode } from '../components/RenderItem';
+import { RenderItem, RenderItemCode } from '../../components/RenderItem';
 
 const RemiseAvoirScreen = () => {
    
@@ -104,7 +103,7 @@ const RemiseAvoirScreen = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-        <ScrollView nestedScrollEnabled={true}>
+        <ScrollView nestedScrollEnabled={true} style={{marginBottom: 70, flex: 1}} showsVerticalScrollIndicator={false}>
             <View style={{flex: 1}}>
                 <HeaderEarth />
 

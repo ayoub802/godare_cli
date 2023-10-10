@@ -1,14 +1,14 @@
 import { View, Text,ScrollView, Image,TouchableOpacity  } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
-import CartViolet from "../assets/images/card_violet.png"
-import CartGreen from "../assets/images/card_green.png"
-import MasterCard from "../assets/images/masterCard.png"
+import { HeaderEarth } from '../../components/Header'
+import CartViolet from "../../assets/images/card_violet.png"
+import CartGreen from "../../assets/images/card_green.png"
+import MasterCard from "../../assets/images/masterCard.png"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import Feather from "react-native-vector-icons/Feather"
-import Button from '../components/Button'
+import Button from '../../components/Button'
 const CartBancair = ({ navigation }) => {
   return (
     <SafeAreaView style={{flex: 1}}>

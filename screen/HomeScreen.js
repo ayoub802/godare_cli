@@ -9,7 +9,7 @@ import { HeaderEarth } from '../components/Header'
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{flex: 1}}>
-        <ScrollView nestedScrollEnabled={true}>
+        <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false} style={{marginBottom: 50}}>
             <View style={{ flex: 1}}>
                <HeaderEarth />
             </View>

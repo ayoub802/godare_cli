@@ -1,19 +1,18 @@
 import { View, Text, ScrollView, Image,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
-import France from "../assets/images/france.png"
+import France from "../../assets/images/france.png"
 import Feather from "react-native-vector-icons/Feather"
-import CoteIvoire from "../assets/images/cote_ivoire.png"
-import SmallEarth from "../assets/images/small_earth.png"
+import CoteIvoire from "../../assets/images/cote_ivoire.png"
+import SmallEarth from "../../assets/images/small_earth.png"
 import AntDesign from "react-native-vector-icons/AntDesign"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import { UserList } from '../constant/data'
+import { UserList } from '../../constant/data'
 
 const ProfileScreen = ({ navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView>
+      <ScrollView style={{marginBottom: 60, paddingBottom: 50}} showsVerticalScrollIndicator={false}>
         <View style={{flex: 1}}>
             <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
                 <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>Fret par avoin</Text>

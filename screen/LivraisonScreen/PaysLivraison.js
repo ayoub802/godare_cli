@@ -2,12 +2,9 @@ import {View, Text, Image} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownPicker from 'react-native-dropdown-picker';
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { BottomTab } from '../navigation/AppNavigation';
-import { HeaderEarth } from '../components/Header';
+import { HeaderEarth } from '../../components/Header';
 import Feather from "react-native-vector-icons/Feather"
-import CoteIvoire from "../assets/images/cote_ivoire.png"
 
 const Tab = createBottomTabNavigator();
 
@@ -24,12 +21,12 @@ const PaysLivraison = ({ navigation }) => {
           <>
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/france.png')}/>
+              <Image source={require('../../assets/images/france.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
               <Feather name="arrow-up-right" size={22} color="#000"/>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/cote_ivoire.png')}/>
+              <Image source={require('../../assets/images/cote_ivoire.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Côte d'ivoire</Text>
               <Feather name="arrow-down-right" size={22} color="#000"/>
             </View>
@@ -47,12 +44,12 @@ const PaysLivraison = ({ navigation }) => {
           <>
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/france.png')}/>
+              <Image source={require('../../assets/images/france.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
               <Feather name="arrow-up-right" size={22} color="#000"/>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/mali.png')}/>
+              <Image source={require('../../assets/images/mali.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Mali</Text>
               <Feather name="arrow-down-right" size={22} color="#000"/>
             </View>
@@ -70,12 +67,12 @@ const PaysLivraison = ({ navigation }) => {
           <>
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 30}}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/france.png')}/>
+              <Image source={require('../../assets/images/france.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>France</Text>
               <Feather name="arrow-up-right" size={22} color="#000"/>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8}}>
-              <Image source={require('../assets/images/congo.png')}/>
+              <Image source={require('../../assets/images/congo.png')}/>
               <Text style={{fontSize: 14, color: "#000", fontFamily: "Roboto-Medium"}}>Congo</Text>
               <Feather name="arrow-down-right" size={22} color="#000"/>
             </View>

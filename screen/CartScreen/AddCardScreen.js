@@ -1,23 +1,24 @@
-import { View, Text, ScrollView, Image, TextInput,TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TextInput,TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import France from "../assets/images/france.png"
+import France from "../../assets/images/france.png"
 import Feather from "react-native-vector-icons/Feather"
-import CoteIvoire from "../assets/images/cote_ivoire.png"
-import SmallEarth from "../assets/images/small_earth.png"
-import { cardData } from '../constant/data'
-import MasterCard from "../assets/images/masterCard.png"
-import Button from '../components/Button'
+import CoteIvoire from "../../assets/images/cote_ivoire.png"
+import SmallEarth from "../../assets/images/small_earth.png"
+import { cardData, card_category } from '../../constant/data'
+import MasterCard from "../../assets/images/masterCard.png"
+import Button from '../../components/Button'
 
 const AddCardScreen = ({ navigation }) => {
 
     const [isSelected, setIsSelected] = useState(false);
+    const [activeCard, setActiveCard] = useState(0)
 
   return (
     <SafeAreaView style={{flex: 1}}>
         <ScrollView      showsVerticalScrollIndicator={false}
-     nestedScrollEnabled={true}>
+            nestedScrollEnabled={true}>
            <View style={{flex: 1}}>
                 <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
                     <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>Fret par avoin</Text>
@@ -39,7 +40,7 @@ const AddCardScreen = ({ navigation }) => {
                         <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold", textAlign: "center", marginTop: 4}}>GS</Text>
                     </View>
                 </View>
-
+            
 
                 <View style={{marginTop: 24, marginBottom: 12}}>
                     <Text
@@ -52,6 +53,20 @@ const AddCardScreen = ({ navigation }) => {
                         Mode de paiment
                     </Text>
                 </View>
+                
+                <ScrollView  horizontal style={{paddingLeft: 10}} showsHorizontalScrollIndicator={false}>
+                            {
+                                card_category.map((item, index) => (
+                                    <View key={index} style={{ marginRight: 15, marginBottom: 25}}>
+                                        <TouchableOpacity onPress={() => setActiveCard(index)} style={[activeCard === index ?  styles.backgroundColorActive : styles.backgroundColor, { justifyContent: "center",borderRadius: 20,alignItems: "center" ,paddingHorizontal: 41, paddingVertical: 16, height: 56, borderWidth: 1.2, borderColor: "#2196F3"}]}>
+                                            <View style={{display: item.imgDisplay}}>{activeCard === index ? item.imgActive : item.img}</View>
+                                            <Text style={[activeCard === index ? styles.textActive : styles.textColor, {display: item.titledisplay, fontFamily: "Poppins-Medium", fontSize: 16}]}>{item.title}</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                ))
+                            }
+                </ScrollView>
+
                 <ScrollView horizontal style={{paddingLeft: 10}} showsHorizontalScrollIndicator={false}>
                         {
                             cardData.map((item, index) => (
@@ -131,7 +146,7 @@ const AddCardScreen = ({ navigation }) => {
                    </View>
 
                    <View style={{marginTop: 20, flex: 1, justifyContent: "flex-end", alignItems: 'center', paddingBottom: 72}}>
-                     <Button title="Payez maintenant" navigation={navigation}/>
+                     <Button title="Payez maintenant" navigation={() => navigation.navigate('VerifyCardScreen')}/>
                    </View>
                 </View>
                 
@@ -140,5 +155,20 @@ const AddCardScreen = ({ navigation }) => {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+    backgroundColorActive: {
+        backgroundColor: "#2196F3"
+    },
+    backgroundColor: {
+        backgroundColor: "#fff"
+    },
+    textActive: {
+        color: "#fff"
+    },
+    textColor: {
+       color: "#000"
+    },
+})
 
 export default AddCardScreen

@@ -1,10 +1,11 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
+import { HeaderEarth } from '../../components/Header'
 import Textarea from 'react-native-textarea';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { ScrollView } from 'react-native-virtualized-view';
 
 const CommandScreen = ({ navigation }) => {
     const [isOpen2, setIsOpen2] = useState(false);

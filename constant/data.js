@@ -14,6 +14,10 @@ import Feather from "react-native-vector-icons/Feather"
 import { Image } from "react-native"
 import CartViolet from "../assets/images/card_violet.png"
 import CartGreen from "../assets/images/card_green.png"
+import Waveimg from "../assets/images/wave.png"
+import Plane from "../assets/images/plane.png"
+import SteperCounter from "../screen/SteperCounter"
+
 
 export const categories = [
     {
@@ -173,5 +177,67 @@ export const cardData = [
        price: 90.85,
        card: "**** **** **** 1234",
        image: CartGreen,
+    },
+]
+
+export const card_category = [
+    {
+        id: 1,
+        title: "",
+        titledisplay: "none",
+        img: <Octicons name="credit-card" size={25} color="#000"/>,
+        imgActive: <Octicons name="credit-card" size={25} color="#fff"/>
+    },
+    {
+        id: 2,
+        title: "",
+        titledisplay: "none",
+        imgDisplay: "flex",
+        img: <Image source={Waveimg}/>,
+        imgActive: <Image source={Waveimg}/>
+
+    },
+    {
+        id: 3,
+        title: "Payer au dépot",
+        titledisplay: "flex",
+        imgDisplay: "none",
+        img: <Image source={Waveimg}/>,
+        imgActive: <Image source={Waveimg}/>
+    },
+] 
+
+export const commandeCours = [
+    {
+        id: 1,
+        title: "Fret par avion",
+        date: "12/02/2034",
+        parice: 199.76,
+        status: "Expédiée",
+        img: <Image source={Plane} />,
+        step: <SteperCounter position={3} count={5}/>
+
+    },
+    {
+        id: 2,
+        title: "Fret par avion",
+        date: "12/02/2034",
+        parice: 199.76,
+        status: "Payée",
+        img: <Image source={Plane} />,
+        step: <SteperCounter  position={4} count={5}/>
+
+    },
+]
+
+export const commandePrecendent = [
+    {
+        id: 1,
+        title: "Fret par bateau",
+        date: "12/02/2034",
+        parice: 199.76,
+        status: "Livrée",
+        img: <Image source={Plane} />,
+        step: <SteperCounter  position={3} count={5}/>
     },
 ]

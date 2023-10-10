@@ -1,37 +1,16 @@
-import { View, Text,TextInput, TouchableOpacity } from 'react-native'
-import React, {useState } from 'react'
-import { HeaderEarth } from '../components/Header'
+import { View, Text,TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import React from 'react'
+import { HeaderEarth } from '../../components/Header'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import DropDownPicker from 'react-native-dropdown-picker'
 import PhoneInput from 'react-native-phone-number-input'
-import Button from '../components/Button'
+import Button from '../../components/Button'
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 
 const EditProfile = ({ navigation }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [current, setCurrent] = useState();
-    const [isSelected, setIsSelected] = useState(false);
-
-    var radio_props = [
-        {label: 'Enregistrer les détails de la carte', value: 0 },
-      ];
-    const items = [
-      {
-        label: 'France',
-        value: 'france',
-      },
-      {
-        label: 'France',
-        value: 'germany',
-      },
-      {
-        label: 'France',
-        value: 'italy',
-      },
-  
-    ];
     return (
         <SafeAreaView style={{ flex: 1}}>
+          <ScrollView style={{paddingBottom: 50}} showsVerticalScrollIndicator={false}>
              <View style={{flex: 1}}>
                  <HeaderEarth />
     
@@ -73,7 +52,7 @@ const EditProfile = ({ navigation }) => {
                           placeholder="06 45 12 17 08"
                           placeholderTextColor="#000"
                           defaultCode='FR'
-                          containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#000", backgroundColor: "transparent", width: 370 }}
+                          containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#000", backgroundColor: "transparent", width: wp(90) }}
                           codeTextStyle={{ display: "none"}}
                           textContainerStyle={{backgroundColor: "transparent" , padding: 0, color: "#000",fontFamily: "Poppins-Regular", fontSize: 14 }}
                           textInputStyle={{borderWidth: 1, height: 60,paddingLeft: 16 ,borderColor: "#AAB0B7",color: "#000" ,borderRadius: 8, backgroundColor: "#fff"}}
@@ -111,6 +90,7 @@ const EditProfile = ({ navigation }) => {
 
                  
              </View>
+          </ScrollView>
         </SafeAreaView>
       )
 }

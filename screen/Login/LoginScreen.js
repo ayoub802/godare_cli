@@ -1,11 +1,11 @@
-import { View, Text, ScrollView, TextInput, CheckBox, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, CheckBox, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
+import { HeaderEarth } from '../../components/Header'
 import DropDownPicker from 'react-native-dropdown-picker';
 import PhoneInput from 'react-native-phone-number-input';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import Button from '../components/Button';
+import Button from '../../components/Button';
+import { ScrollView } from 'react-native-virtualized-view';
 
 const LoginScreen = ({ navigation }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +29,7 @@ const LoginScreen = ({ navigation }) => {
     ];
   return (
     <SafeAreaView style={{ flex: 1}}>
+      <ScrollView style={{paddingBottom: 50}} showsVerticalScrollIndicator={false}>
          <View style={{flex: 1}}>
              <HeaderEarth />
 
@@ -110,6 +111,7 @@ const LoginScreen = ({ navigation }) => {
                 </View>
              </View>
          </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

@@ -1,14 +1,14 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../components/Header'
+import { HeaderEarth } from '../../components/Header'
 import Ionicons from "react-native-vector-icons/Ionicons"
-import { adress } from '../constant/data'
+import { adress } from '../../constant/data'
 const AdresseScreen = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{paddingBottom: 500}}>
           <View style={{flex: 1}}>
             <HeaderEarth />
 
@@ -34,7 +34,7 @@ const AdresseScreen = () => {
                 </TouchableOpacity>
              </View>
 
-             <View style={{paddingHorizontal: 12, marginTop: 25}}>
+             <View style={{paddingHorizontal: 12, marginTop: 25, paddingBottom: 50}}>
                 {
                     adress.map((item, index) => (
                         <View key={index} style={{backgroundColor: "#fff", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 12, marginBottom: 16}}>

@@ -1,15 +1,14 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import React, { useState } from 'react'
 import {SafeAreaView} from 'react-native-safe-area-context';
-import { HeaderActions } from '../components/Header';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import France from "../assets/images/france.png"
+import France from "../../assets/images/france.png"
 import Feather from "react-native-vector-icons/Feather"
-import CoteIvoire from "../assets/images/cote_ivoire.png"
-import SmallEarth from "../assets/images/small_earth.png"
+import CoteIvoire from "../../assets/images/cote_ivoire.png"
+import SmallEarth from "../../assets/images/small_earth.png"
 import DropDownPicker from 'react-native-dropdown-picker';
-import Button from '../components/Button';
-import Stepper from './Stepper';
+import Button from '../../components/Button';
+import Stepper from '../Stepper';
 
 const DepotScreen1 = ({ navigation }) => {
   const [isOpen, setIsOpen] = useState(false);
