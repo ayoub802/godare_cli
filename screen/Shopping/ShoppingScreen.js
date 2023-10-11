@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
 import React, {useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
@@ -6,16 +6,19 @@ import France from "../../assets/images/france.png"
 import Feather from "react-native-vector-icons/Feather"
 import CoteIvoire from "../../assets/images/cote_ivoire.png"
 import SmallEarth from "../../assets/images/small_earth.png"
-import { products, shoppingCategorie } from '../../constant/data'
+import { products, productsCard, shoppingCategorie } from '../../constant/data'
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Octicons from "react-native-vector-icons/Octicons"
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import Button, { ButtonIcon } from '../../components/Button'
 import ListCard from '../../components/ListCard'
-const ShoppingScreen = () => {
+import Empty from '../../components/Empty'
+import { ScrollView } from 'react-native-virtualized-view'
+import GridCard from '../../components/GridCard'
+const ShoppingScreen = ({ navigation }) => {
 
-    const [activetext, setActiveText] = useState(0)
+    const [activetext, setActiveText] = useState(1)
     const [activeFilter, setActiveFilter] = useState(0)
     let color = {};
     const filterList = [
@@ -30,7 +33,7 @@ const ShoppingScreen = () => {
     ]
   return (
     <SafeAreaView style={{ flex: 1}}>
-        <ScrollView style={{ flex: 1, paddingBottom: 15}} showsVerticalScrollIndicator={false}>
+        <ScrollView style={{ flex: 1, paddingBottom: 15, width: "100%"}} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
              <View style={{ flex: 1, position: "relative"}}>
 
                 <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
@@ -54,18 +57,24 @@ const ShoppingScreen = () => {
                     </View>
                 </View>
 
-                <View style={{marginTop: 30}}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{paddingLeft: 10}}>
-                    {
-                        shoppingCategorie.map((item, index)=> (
-                            <TouchableOpacity onPress={() => setActiveText(index)} key={index} style={{ flexDirection: "row", alignItems: "center", gap: 12, width: 140}}>
-                                <View>{item.img}</View>
-                                <Text style={[activetext === index ? styles.textActive : styles.text, {fontFamily: "Poppins-Medium", fontSize: 12}]}>{item.title}</Text>
-                            </TouchableOpacity>
-                        ))
-                    }
-                    </ScrollView>
-                </View>
+                    
+                    <View style={{marginTop: 20}}>
+                        <ScrollView horizontal={false} scrollEnabled={true} style={{ width: "100%" }}>
+                            <FlatList 
+                            horizontal
+                            style={{paddingLeft: 10}}
+                            showsHorizontalScrollIndicator={false}
+                            data={shoppingCategorie}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => (
+                                    <TouchableOpacity onPress={() => setActiveText(item.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, width: 140}}>
+                                            <View>{item.img}</View>
+                                            <Text style={[activetext === item.id ? styles.textActive : styles.text, {fontFamily: "Poppins-Medium", fontSize: 12}]}>{item.title}</Text>
+                                        </TouchableOpacity>
+                                )}
+                            />
+                        </ScrollView>
+                    </View>
 
                 <View style={{marginTop: 30, paddingHorizontal: 5}}>
                     <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center",borderTopLeftRadius: 28, borderTopRightRadius: 28 ,backgroundColor: "#fff", paddingVertical: 27, paddingLeft: 15, paddingRight: 23}}>
@@ -80,25 +89,53 @@ const ShoppingScreen = () => {
                             </TouchableOpacity> 
                         </View>
                         <View style={{flexDirection:"row", alignItems: "center", gap: 15}}>
-                            {
-                                filterList.map((item, index) => (
+                              {
+                                activeFilter === 0 
+                                ?
+                                <TouchableOpacity onPress={() => setActiveFilter(1)}>
+                                    <Ionicons name="grid-outline" color="#00000033" size={25}/>
+                                </TouchableOpacity> 
+                                :
+                                <TouchableOpacity onPress={() => setActiveFilter(0)}>
+                                    <Ionicons name="grid-outline" color="#376AED" size={25}/>
+                                </TouchableOpacity> 
+                              }
+                              {
+                                activeFilter === 1 
+                                ?
+                                <TouchableOpacity onPress={() => setActiveFilter(0)}>
+                                    <Octicons name="list-unordered" color="#00000033" size={25}/>
+                                </TouchableOpacity> 
+                                :
+                                <TouchableOpacity onPress={() => setActiveFilter(1)}>
+                                    <Octicons name="list-unordered" color="#376AED" size={25}/>
+                                </TouchableOpacity> 
+                              }
                                     
-                                    <TouchableOpacity onPress={() => setActiveFilter(index)} key={index}>
-                                        {item.icon}
-                                    </TouchableOpacity> 
-                                ))
-                            }
+
                         </View>
                     </View>
                 </View>
 
                 <View style={{paddingBottom: 85}}>
-                    { 
-                      products.map((item, index) => (
-                        <ListCard item={item} index={index}/>
-                      ))
+                    {
+                        activeFilter === 1
+                        ? 
+                        <FlatList 
+                        data={productsCard}
+                        numColumns={2}
+                        keyExtractor={item => item.id}
+                        renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                      />
+                      :
+                        <FlatList 
+                          data={products}
+                          keyExtractor={item => item.id}
+                          renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                        />
                     }
                 </View>
+
              </View>
         </ScrollView>
     </SafeAreaView>

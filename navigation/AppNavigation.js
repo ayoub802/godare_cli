@@ -32,6 +32,11 @@ import CartScreen from '../screen/CartScreen/CartScreen';
 import VerifyCardScreen from '../screen/CartScreen/VerfiyCardScreen';
 import CommandCours from '../screen/CommandCours/CommandCours';
 import ShoppingScreen from '../screen/Shopping/ShoppingScreen';
+import LoginShoppinScreen from '../screen/Shopping/LoginScreen';
+import CheckoutScreen from '../screen/ChekoutScreen/CheckoutScreen';
+import ColiSuivi from '../screen/Coli/ColiSuivi';
+import VerifyCardChckoutScreen from '../screen/Shopping/VerfiyCardScreen';
+import AddCardChekoutScreen from '../screen/Shopping/AddCardScreen';
 
 
 const Home = createNativeStackNavigator();
@@ -86,7 +91,13 @@ const AppNavigation = () => {
                 <Home.Screen name="VerifyCardScreen" component={VerifyCardScreen} />
                 <Home.Screen name="CommandCours" component={CommandCours} />
                 <Home.Screen name="Login" component={LoginScreen} />
+                <Home.Screen name="LoginShoppins" component={LoginShoppinScreen} />
                 <Home.Screen name="ShoppingScreen" component={ShoppingScreen} />
+                <Home.Screen name="CartScreen" component={CartScreen} />
+                <Home.Screen name="CheckoutScreen" component={CheckoutScreen} />
+                <Home.Screen name="ColiScreen" component={ColiSuivi} />
+                <Home.Screen name="VerifyCardChckoutScreen" component={VerifyCardChckoutScreen} />
+                <Home.Screen name="AddCardChckoutScreen" component={AddCardChekoutScreen} />
               </Home.Navigator>
             )
           }

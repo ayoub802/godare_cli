@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput } from 'react-native'
+import { View, Text, Image, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
 import React, { useRef, useState } from 'react'
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
@@ -108,7 +108,7 @@ const Livraison1 = ({ navigation }) => {
             </View>
 
             <View style={{ marginTop: 10, paddingHorizontal: 16, position: "relative", zIndex: -1000}}>
-              <View style={{ backgroundColor: '#fff', paddingVertical: 22, paddingHorizontal: 14, borderRadius: 10}}>
+              <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : "height"} style={{ backgroundColor: '#fff', paddingVertical: 22, paddingHorizontal: 14, borderRadius: 10}}>
                   <Text style={{fontFamily: "Poppins-Medium", fontSize: 14, color: "#000"}}>
                       Les coordonnées de la personne à contacter
                     </Text>
@@ -141,7 +141,7 @@ const Livraison1 = ({ navigation }) => {
 
                       />
                   </View>
-              </View>
+              </KeyboardAvoidingView>
             </View>
 
             <View style={{ flex: 1, justifyContent: "flex-end", alignItems: 'center', paddingBottom: 72}}>

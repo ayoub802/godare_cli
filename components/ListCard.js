@@ -6,10 +6,10 @@ import Octicons from "react-native-vector-icons/Octicons"
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import Button, { ButtonIcon } from './Button'
-const ListCard = ({ item, index }) => {
+const ListCard = ({ item, index, navigation }) => {
   return (
     <View key={index} style={{ backgroundColor: "#fff", margin: 5}}>
-    <View style={{flexDirection: "row", alignItems: "flex-start", gap: 10, paddingVertical: 12, paddingLeft: 22}}>
+      <View style={{flexDirection: "row", alignItems: "flex-start", gap: 10, paddingVertical: 12, paddingLeft: 22}}>
             <View>
             <Image source={item.image} style={{height: hp(22), borderRadius: 22, width: wp(29)}}/>
             </View>
@@ -46,7 +46,7 @@ const ListCard = ({ item, index }) => {
                 </View>
 
                 <View style={{marginTop: 8}}>
-                <Button title="Ajouter au panier"/>
+                <Button title="Ajouter au panier" navigation={navigation}/>
                 </View>
             </View>
         </View>

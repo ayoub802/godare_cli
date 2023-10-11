@@ -4,6 +4,7 @@ import CatShop1 from "../assets/images/boissons.png"
 import CatShop2 from "../assets/images/vétement.png"
 import CatShop3 from "../assets/images/télé.png"
 import Product1 from "../assets/images/product_1.png"
+import ProductGrid1 from "../assets/images/iphone.png"
 import HeaderEarthImage from "../assets/images/earth.png"
 import Product2 from "../assets/images/product_2.png"
 import AntDesign from "react-native-vector-icons/AntDesign"
@@ -19,6 +20,7 @@ import CartViolet from "../assets/images/card_violet.png"
 import CartGreen from "../assets/images/card_green.png"
 import Waveimg from "../assets/images/wave.png"
 import Plane from "../assets/images/plane.png"
+import Iphone from "../assets/images/iphone.png"
 import SteperCounter from "../screen/SteperCounter"
 
 
@@ -96,6 +98,45 @@ export const products = [
         price: 12,
         old_price: 16,
         image: Product2,
+        titleColor: "#EB971A",
+        bgColor: "rgba(235, 151, 26, 0.15)"
+    },
+] 
+
+export const productsCard = [
+    {
+        id: 1,
+        title: "Iphone 12 Pro Max",
+        price: 450,
+        old_price: 450,
+        image: ProductGrid1,
+        titleColor: "#94217B",
+        bgColor: "rgba(148, 33, 122.70, 0.15)"
+    },
+    {
+        id: 2,
+        title: "Iphone 12 Pro Max",
+        price: 450,
+        old_price: 450,
+        image: ProductGrid1,
+        titleColor: "#EB971A",
+        bgColor: "rgba(235, 151, 26, 0.15)"
+    },
+    {
+        id: 3,
+        title: "Iphone 12 Pro Max",
+        price: 450,
+        old_price: 450,
+        image: ProductGrid1,
+        titleColor: "#EB971A",
+        bgColor: "rgba(235, 151, 26, 0.15)"
+    },
+    {
+        id: 4,
+        title: "Iphone 12 Pro Max",
+        price: 450,
+        old_price: 450,
+        image: ProductGrid1,
         titleColor: "#EB971A",
         bgColor: "rgba(235, 151, 26, 0.15)"
     },
@@ -260,5 +301,26 @@ export const commandePrecendent = [
         status: "Livrée",
         img: <Image source={Plane} />,
         step: <SteperCounter  position={3} count={5}/>
+    },
+]
+
+export const productCart = [
+    {
+        id: 1,
+        title: "Iphone 12 Pro Max",
+        color: "Noir",
+        stokage: 256,
+        etat: "Occasion",
+        price: "420€",
+        image: Iphone
+    },
+    {
+        id: 2,
+        title: "Iphone 12 Pro Max",
+        color: "Noir",
+        stokage: 256,
+        etat: "Occasion",
+        price: "420€",
+        image: Iphone
     },
 ]
