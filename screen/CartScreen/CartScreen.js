@@ -55,7 +55,7 @@ const CartScreen = ({ navigation }) => {
 
               <View style={{marginTop: 60, paddingHorizontal: 40}}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                   <Text style={{color: "#000", fontSize: 15,fontFamily: "Poppins-Medium", letterSpacing: 0.3}}>Sub Total:</Text>
+                   <Text style={{color: "#000", fontSize: 15,fontFamily: "Poppins-SemiBold", letterSpacing: 0.3}}>Sub Total:</Text>
                    <Text style={{color: "#000", fontSize: 16,fontFamily: "Poppins-SemiBold", letterSpacing: 0.3}}>420€</Text>
                 </View>
 
@@ -125,7 +125,7 @@ const CartScreen = ({ navigation }) => {
                 </View>
 
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center",marginTop: 15}}>
-                   <Button title="checkout" navigation={() => navigation.navigate('CheckoutScreen')}/>
+                   <Button title="checkout" navigation={() => navigation.navigate('CheckoutScreen')} width={150}/>
                 </View> 
 
               </View>

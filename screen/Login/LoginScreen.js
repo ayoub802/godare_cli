@@ -65,12 +65,14 @@ const LoginScreen = ({ navigation }) => {
                 </View>
                 <View style={{}}>
                     <PhoneInput 
-                      placeholder="(201) 555-0124"
+                      placeholder="(201) 555-0128"
+                      placeholderColor="#fff"
+                      placeholderTextColor="#000"
                       defaultCode='FR'
-                      containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#000", backgroundColor: "transparent", width: 370 }}
+                      containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#fff", backgroundColor: "transparent", width: 370 }}
                       codeTextStyle={{ display: "none"}}
-                      textContainerStyle={{backgroundColor: "transparent" , padding: 0, color: "#000",fontFamily: "Poppins-Regular", fontSize: 14 }}
-                      textInputStyle={{borderWidth: 1, height: 60,paddingLeft: 16 ,borderColor: "#AAB0B7",color: "#000" ,borderRadius: 8, backgroundColor: "#fff"}}
+                      textContainerStyle={{backgroundColor: "transparent" , padding: 0, color: "#fff",fontFamily: "Poppins-Regular", fontSize: 14 }}
+                      textInputStyle={{borderWidth: 1, height: 60,paddingLeft: 16 ,borderColor: "#AAB0B7",color: "#fff" ,borderRadius: 8, backgroundColor: "#fff"}}
                       flagButtonStyle={{borderWidth: 1, height: 60 ,borderColor: "#AAB0B7" ,borderRadius: 8, backgroundColor: "#fff"}}
                     />
                 </View>

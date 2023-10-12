@@ -26,7 +26,7 @@ const GridCard = ({ item, index, navigation}) => {
             </View>
         </View>
       <View style={{flexDirection: "row", alignItems: "center", gap: 10, paddingBottom: 8, paddingLeft: 6}}>
-            <View>
+            <View style={{backgroundColor: "#F5F5F5", height: hp(14), width: wp(20), borderRadius: 20, paddingTop: 10}}>
             <Image source={item.image} style={{height: hp(12),objectFit: "cover" ,borderRadius: 22, width: wp(19)}}/>
             </View>
             <View style={{flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", paddingRight: 6}}>

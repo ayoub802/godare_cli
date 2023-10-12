@@ -66,6 +66,7 @@ const LoginShoppinScreen = ({ navigation }) => {
                 <View style={{}}>
                     <PhoneInput 
                       placeholder="(201) 555-0124"
+                      placeholderTextColor="#000"
                       defaultCode='FR'
                       containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#000", backgroundColor: "transparent", width: 370 }}
                       codeTextStyle={{ display: "none"}}

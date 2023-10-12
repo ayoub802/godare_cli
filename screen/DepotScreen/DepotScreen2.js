@@ -104,7 +104,7 @@ const DepotScreen2 = ({ navigation }) => {
                 </KeyboardAvoidingView>
             </View>
 
-            <View style={{ marginTop: 10, paddingHorizontal: 16, position: "relative", zIndex: -1000}}>
+            <View style={{ marginTop: 10,marginBottom: 20 ,paddingHorizontal: 16, position: "relative", zIndex: -1000}}>
               <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ backgroundColor: '#fff', paddingVertical: 22, paddingHorizontal: 14, borderRadius: 10}}>
                   <Text style={{fontFamily: "Poppins-Medium", fontSize: 14, color: "#000"}}>
                       Les coordonnées de la personne à contacter

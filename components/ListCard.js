@@ -41,11 +41,11 @@ const ListCard = ({ item, index, navigation }) => {
                     <MaterialIcons name="keyboard-arrow-down" size={22} color='#000'/>
                 </TouchableOpacity>
 
-                <View style={{marginTop: 8}}>
+                <View style={{marginTop: 8, width: "100%"}}>
                 <ButtonIcon title="Prendre une photo" Icon={<FontAwesome5 name="file-upload" size={15} color='#4E8FDA'/>}/>
                 </View>
 
-                <View style={{marginTop: 8}}>
+                <View style={{marginTop: 8, width: "100%"}}>
                 <Button title="Ajouter au panier" navigation={navigation}/>
                 </View>
             </View>

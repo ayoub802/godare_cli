@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import Feather from "react-native-vector-icons/Feather"
 import Octicons from "react-native-vector-icons/Octicons"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import Button from './Button'
+import Button, { ButtonPrix } from './Button'
 
 const CartItem = ({ item, index }) => {
     const [quantity, setQuantity] = useState(1)
@@ -36,8 +36,8 @@ const CartItem = ({ item, index }) => {
                       </TouchableOpacity>
                   </View>
 
-                  <View style={{flexDirection: "row", alignItems: "center", gap: 20, marginTop: 12}}>
-                      <Button title={item.price}/>
+                  <View style={{flexDirection: "row", alignItems: "center", gap: 12, marginTop: 12}}>
+                      <ButtonPrix title={item.price}/>
 
                       <View style={{flexDirection: "row", alignItems: "center", gap: 25, backgroundColor:"#EFEFEF", borderRadius: 18, paddingHorizontal: 19, paddingVertical: 5}}>
                           <TouchableOpacity onPress={DesIncrementQunaityt}>

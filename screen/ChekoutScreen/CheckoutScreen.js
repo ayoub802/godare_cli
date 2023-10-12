@@ -10,7 +10,7 @@ import CoteIvoire from "../../assets/images/cote_ivoire.png"
 import SmallEarth from "../../assets/images/small_earth.png"
 import Stepper from '../Stepper'
 import { productCart } from '../../constant/data'
-import Button from '../../components/Button'
+import Button, { ButtonPrix } from '../../components/Button'
 
 const CheckoutScreen = ({ navigation }) => {
   return (
@@ -47,8 +47,12 @@ const CheckoutScreen = ({ navigation }) => {
               <View style={{marginTop: 16}}>
                   <View style={{backgroundColor: "#fff", paddingLeft: 28 ,paddingVertical: 12, marginBottom: 16, borderRadius: 18}}>
                         <View style={{ flexDirection: "row", alignItems: "center", gap: 20}}>
-                            <View>
+                            <View style={{position: "relative"}}>
                                 <Image source={productCart[0].image}/>
+                                
+                                <View style={{position: "absolute", bottom: 0}}>
+                                    <ButtonPrix title={productCart[0].price}/>
+                                </View>
                             </View>
                             <View>
                                 <View style={{flexDirection: "row",justifyContent: "space-between" ,alignItems: "flex-start", gap: wp(20)}}>
@@ -57,10 +61,6 @@ const CheckoutScreen = ({ navigation }) => {
                                             <Text>{productCart[0].color} - {productCart[0].stokage} GB</Text>
                                             <Text>Etat: {productCart[0].etat}</Text>
                                     </View>
-                                </View>
-
-                                <View style={{flexDirection: "row", alignItems: "center", gap: 20, marginTop: 12}}>
-                                    <Button title={productCart[0].price}/>
                                 </View>
                             </View>
                         </View>

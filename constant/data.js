@@ -20,6 +20,7 @@ import CartViolet from "../assets/images/card_violet.png"
 import CartGreen from "../assets/images/card_green.png"
 import Waveimg from "../assets/images/wave.png"
 import Plane from "../assets/images/plane.png"
+import Boat from "../assets/images/boat.png"
 import Iphone from "../assets/images/iphone.png"
 import SteperCounter from "../screen/SteperCounter"
 
@@ -299,7 +300,7 @@ export const commandePrecendent = [
         date: "12/02/2034",
         parice: 199.76,
         status: "Livrée",
-        img: <Image source={Plane} />,
+        img: <Image source={Boat} />,
         step: <SteperCounter  position={3} count={5}/>
     },
 ]
