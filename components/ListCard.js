@@ -11,19 +11,19 @@ const ListCard = ({ item, index, navigation }) => {
     <View key={index} style={{ backgroundColor: "#fff", margin: 5}}>
       <View style={{flexDirection: "row", alignItems: "flex-start", gap: 10, paddingVertical: 12, paddingLeft: 22}}>
             <View>
-            <Image source={item.image} style={{height: hp(22), borderRadius: 22, width: wp(29)}}/>
+              <Image source={{uri: item.productImages[0].url}} style={{height: hp(22), borderRadius: 22, width: wp(29)}}/>
             </View>
             <View style={{flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start"}}>
-                <View style={{backgroundColor: item.bgColor,paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, justifyContent: "center", alignItems: "center"}}>
-                <Text style={{fontFamily: "Poppins-Medium", fontSize: 10, color: item.titleColor}}>{item.title}</Text>
+                <View style={{backgroundColor: item.bgColor,paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, justifyContent: "center", alignItems: "center", maxWidth: 250}}>
+                  <Text style={{fontFamily: "Poppins-Medium", fontSize: 10, color: item.titleColor,textAlign: "center"}}>{item.name}</Text>
                 </View>
 
                 <View style={{flexDirection: "row", alignItems: "center", gap: 5, marginTop: 8}}>
                     <Text style={{fontSize: 13, fontFamily: "Poppins-Medium",color: "#000"}}>
-                        {item.price}€/KG
+                        {item.productSpecificites[0].prix}€/KG
                     </Text>
                     <Text style={{fontSize: 13, fontFamily: "Poppins-Medium",color: "#000"}}>
-                    {item.old_price}€/KG
+                    {item.productSpecificites[0].prixAncien}€/KG
                     </Text>
                 </View>
                 

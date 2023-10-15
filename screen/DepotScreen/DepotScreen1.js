@@ -9,8 +9,11 @@ import SmallEarth from "../../assets/images/small_earth.png"
 import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../../components/Button';
 import Stepper from '../Stepper';
+import { HeaderActions } from '../../components/Header';
 
-const DepotScreen1 = ({ navigation }) => {
+const DepotScreen1 = ({ navigation, route, data }) => {
+  const id = route.params;
+  const [paysData, setPaysData] = useState(id);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [current, setCurrent] = useState();
@@ -33,7 +36,7 @@ const DepotScreen1 = ({ navigation }) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{ flex: 1}}>
-          <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
+          {/* <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
               <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>Fret par avoin</Text>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
@@ -52,7 +55,9 @@ const DepotScreen1 = ({ navigation }) => {
                 <Image source={SmallEarth}/>
                 <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold", textAlign: "center", marginTop: 4}}>GS</Text>
               </View>
-          </View>
+          </View> */}
+
+          <HeaderActions destination={id}/>
 
           <View>
             <Stepper position={1}/>

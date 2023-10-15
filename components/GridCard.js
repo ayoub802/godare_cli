@@ -10,24 +10,26 @@ import Button, { ButtonIcon } from './Button'
 const GridCard = ({ item, index, navigation}) => {
   return (
     <View key={index} style={{ backgroundColor: "#fff", margin: 4.5, borderRadius: 10}}>
-        <View style={{flexDirection: "row", alignItems: "center",justifyContent: "space-between" ,gap: 10, paddingVertical: 16, paddingLeft: 6, paddingRight: 6}}>
-           <Text style={{fontFamily: "Poppins-SemiBold", fontSize: 10, color: "#000"}}>{item.title}</Text>
+        <View style={{flexDirection: "row", alignItems: "center",justifyContent: "space-between" ,gap: 10, paddingTop: 16, paddingLeft: 6, paddingRight: 6}}>
+           <View style={{maxWidth: 130}}>
+             <Text style={{fontFamily: "Poppins-SemiBold",textAlign: "left" ,fontSize: 10, color: "#000"}}>{item.name}</Text>
+           </View>
            <View style={{flexDirection: "column", alignItems: "center", gap: 5}}>
                     <View>
                         <Text style={{fontSize: 9, fontFamily: "Poppins-Medium",color: "#000"}}>
-                            {item.price}€/KG
+                          {item.productSpecificites[0].prix}€/KG
                         </Text>
                     </View>
                     <View>
                         <Text style={{fontSize: 9, fontFamily: "Poppins-Medium",color: "#000", textDecorationLine: "line-through"}}>
-                            {item.old_price}€/KG
+                          {item.productSpecificites[0].prixAncien}€/KG
                         </Text>
                     </View>
             </View>
         </View>
       <View style={{flexDirection: "row", alignItems: "center", gap: 10, paddingBottom: 8, paddingLeft: 6}}>
             <View style={{backgroundColor: "#F5F5F5", height: hp(14), width: wp(20), borderRadius: 20, paddingTop: 10}}>
-            <Image source={item.image} style={{height: hp(12),objectFit: "cover" ,borderRadius: 22, width: wp(19)}}/>
+            <Image source={{uri: item.productImages[0].url}} style={{height: hp(12),objectFit: "cover" ,borderRadius: 22, width: wp(19)}}/>
             </View>
             <View style={{flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", paddingRight: 6}}>
 

@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -9,8 +9,8 @@ import axios from 'axios';
 const Tab = createBottomTabNavigator();
 
 const PaysLivraison = ({navigation, route}) => {
-  const id = route.params;
-  const [paysData, setPaysData] = useState(id);
+  const item = route.params;
+  const [paysData, setPaysData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState();
   const items = [
@@ -150,6 +150,20 @@ const PaysLivraison = ({navigation, route}) => {
     },
   ];
 
+  useEffect(() => {
+    fetchPays();
+   }, [])
+
+const fetchPays = async () => {
+    const url = "https://godaregroup.com/api/pays/actif";
+    let result = await fetch(`${url}/${item.id}`);
+    result = await result.json();
+    if(result){
+      setPaysData(result)
+    }
+  }
+  console.log(paysData);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
@@ -169,10 +183,10 @@ const PaysLivraison = ({navigation, route}) => {
           <View style={{marginTop: 16}}>
             <DropDownPicker
               items={
-                paysData.pays.map(item => (
+                paysData.map(item => (
                   {
                     label: '',
-                    value: item.destination,
+                    value: item,
                     icon: () => {
                       return (
                         <>
@@ -217,7 +231,7 @@ const PaysLivraison = ({navigation, route}) => {
               }
               open={isOpen}
               setOpen={() => setIsOpen(!isOpen)}
-              key={id.id}
+              key={item.id}
               value={current}
               setValue={val => setCurrent(val)}
               dropDownContainerStyle={{
@@ -241,7 +255,9 @@ const PaysLivraison = ({navigation, route}) => {
               searchContainerStyle={{borderBottomWidth: 0}}
               searchTextInputStyle={{borderColor: '#2BA6E9'}}
               searchPlaceholder="Recherche Pays..."
-              onSelectItem={() => navigation.navigate('DepotScreen1')}
+              onSelectItem={(value, index) => {
+                navigation.navigate("ShoppingScreen",{value: value, data: current});
+              }}
             />
           </View>
         </View>

@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
-import React, {useState} from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native'
+import React, {useState, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import France from "../../assets/images/france.png"
@@ -16,47 +16,92 @@ import ListCard from '../../components/ListCard'
 import Empty from '../../components/Empty'
 import { ScrollView } from 'react-native-virtualized-view'
 import GridCard from '../../components/GridCard'
-const ShoppingScreen = ({ navigation }) => {
+import { HeaderActions } from '../../components/Header'
+const ShoppingScreen = ({ navigation, route }) => {
+     const {value} = route.params;
+     const [activeFilter, setActiveFilter] = useState(0);
+     const [categoriData, setCategoriData] = useState([]);
+     const [productsData, setProductsData] = useState([])
+     const [activetext, setActiveText] = useState('')
 
-    const [activetext, setActiveText] = useState(1)
-    const [activeFilter, setActiveFilter] = useState(0)
-    let color = {};
-    const filterList = [
-        {
-            id: 1,
-            icon: <Ionicons name="grid-outline" color="#00000033" size={25}/>
-        },
-        {
-            id: 2,
-            icon:  <Octicons name="list-unordered" color="#376AED" size={25}/>
-        },
-    ]
+     useEffect(() => {
+         fetchCategories();
+         fetchProducts();
+        }, [])
+        
+        const fetchCategories = async () => {
+            let result = await fetch(`https://godaregroup.com/api/categories/actif/${value.value.service.code}/${value.value.id}`);
+            result = await result.json();
+            if(result){
+                setCategoriData(result)
+                let data = result;
+
+                let find = false;
+                data.map((row) => {
+                    if(!find){
+                        setActiveText(row.id)
+                        find = true;
+                    }
+                })
+            }
+        }
+                
+        const fetchProducts = async (category = activetext) => {
+            let result = await fetch(`https://godaregroup.com/api/products/categories/actif/${category}/${value.value.id}`);
+            result = await result.json();
+            if(result){
+                setProductsData(result)
+            }
+        }
+
+        const handleChange = category => {
+            fetchProducts(category);
+            setActiveText(category);
+            setProductsData([]);
+        }
+        // setActiveText(categoriData.id)
+        console.warn(activetext);
+
+        const RenderProduct = () => {
+            if(productsData.length <= 0){
+                return (
+                    <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                       <ActivityIndicator size={30}/>
+                    </View>
+                        
+                )
+            }
+    
+            else{
+               return 
+                <>
+                    {
+                      activeFilter === 1
+                            ? 
+                            
+                            <FlatList 
+                            data={productsData}
+                            numColumns={2}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                        />
+                        :
+                            <FlatList 
+                            data={productsData}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                            />
+                        }
+                </>
+            }
+        }
+
   return (
     <SafeAreaView style={{ flex: 1}}>
         <ScrollView style={{ flex: 1, paddingBottom: 15, width: "100%"}} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
              <View style={{ flex: 1, position: "relative"}}>
-
-                <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
-                    <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>Fret par avoin</Text>
-                    <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10}}>
-                        <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
-                            <Image source={France}/>
-                            <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Regular"}}>France</Text>
-                            <Feather name="arrow-up-right" color="#fff" size={22}/>
-                        </View>
-                        <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
-                            <Image source={CoteIvoire}/>
-                            <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Regular"}}>Côte d'ivoire</Text>
-                            <Feather name="arrow-down-right" color="#fff" size={22}/>
-                        </View>
-                    </View>
-
-                    <View style={{ position: "absolute", top: 15, right: 10}}>
-                    <Image source={SmallEarth}/>
-                    <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold", textAlign: "center", marginTop: 4}}>GS</Text>
-                    </View>
-                </View>
-
+              
+               <HeaderActions destination={value.value.destination} nom_service={value.value.service.nom}/>
                     
                     <View style={{marginTop: 20}}>
                         <ScrollView horizontal={false} scrollEnabled={true} style={{ width: "100%" }}>
@@ -64,12 +109,15 @@ const ShoppingScreen = ({ navigation }) => {
                             horizontal
                             style={{paddingLeft: 10}}
                             showsHorizontalScrollIndicator={false}
-                            data={shoppingCategorie}
+                            data={categoriData}
                             keyExtractor={item => item.id}
                             renderItem={({item}) => (
-                                    <TouchableOpacity onPress={() => setActiveText(item.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, width: 140}}>
-                                            <View>{item.img}</View>
-                                            <Text style={[activetext === item.id ? styles.textActive : styles.text, {fontFamily: "Poppins-Medium", fontSize: 12}]}>{item.title}</Text>
+                                
+                                    <TouchableOpacity onPress={() => handleChange(item.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, width: 140}}>
+                                            <View>
+                                                <Image source={{ uri: item.image}} style={{width: wp(10), height: wp(10), objectFit: "cover"}}/>
+                                            </View>
+                                            <Text style={[activetext === item.id ? styles.textActive : styles.text, {fontFamily: "Poppins-Medium", fontSize: 12}]}>{item.name}</Text>
                                         </TouchableOpacity>
                                 )}
                             />
@@ -117,23 +165,35 @@ const ShoppingScreen = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={{paddingBottom: 85}}>
+                <View style={{paddingBottom: 85, flex: 1}}>
+                   {
+                    productsData.length <= 0 ? 
+                    <>
+                    <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                       <ActivityIndicator size={30}/>
+                    </View>
+                    </> 
+                    :
+                    <>
                     {
-                        activeFilter === 1
-                        ? 
-                        <FlatList 
-                        data={productsCard}
-                        numColumns={2}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
-                      />
-                      :
-                        <FlatList 
-                          data={products}
-                          keyExtractor={item => item.id}
-                          renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                      activeFilter === 1
+                            ? 
+                            
+                            <FlatList 
+                            data={productsData}
+                            numColumns={2}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
                         />
-                    }
+                        :
+                            <FlatList 
+                            data={productsData}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                            />
+                        }
+                    </>
+                   }
                 </View>
 
              </View>
