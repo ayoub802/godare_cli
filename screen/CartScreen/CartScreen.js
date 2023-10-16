@@ -1,5 +1,5 @@
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native-virtualized-view'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
@@ -8,10 +8,35 @@ import Feather from "react-native-vector-icons/Feather"
 import CoteIvoire from "../../assets/images/cote_ivoire.png"
 import SmallEarth from "../../assets/images/small_earth.png"
 import Stepper from '../Stepper'
-import { productCart } from '../../constant/data'
+import { productCart, products } from '../../constant/data'
 import CartItem from '../../components/CartItem'
 import Button from '../../components/Button'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const CartScreen = ({ navigation }) => {
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+      getDataFromDB();
+  }, [navigation]);
+  
+
+  const getDataFromDB = async () => {
+    let items = await AsyncStorage.getItem('cartItems');
+    items = JSON.parse(items);
+    let productData = [];
+    if (items) {
+      products.forEach(data => {
+        if (items.includes(data.id)) {
+          productData.push(data);
+          return;
+        }
+      });
+      setProduct(productData);
+    } else {
+      setProduct(false);
+    }
+  };
+
 
   const [couponShow, setCouponShow] = useState(false)
   return (
@@ -47,7 +72,7 @@ const CartScreen = ({ navigation }) => {
 
               <View style={{marginTop: 40}}>
                   {
-                    productCart.map((item, index) => (
+                    product.map((item, index) => (
                       <CartItem item={item} key={index}/>
                     ))
                   }

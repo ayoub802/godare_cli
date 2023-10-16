@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert, ActivityIndicator} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -6,10 +6,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HeaderEarth} from '../../components/Header';
 import Feather from 'react-native-vector-icons/Feather';
 import axios from 'axios';
+import { getSelectedService } from '../../hooks/GestionStorage';
+import axiosInstance from '../../axiosInstance';
 const Tab = createBottomTabNavigator();
 
 const PaysLivraison = ({navigation, route}) => {
   const item = route.params;
+  console.log(item);
+  const [ActivityIndicatorVar, setActivityIndicatorVar] = useState(false);
   const [paysData, setPaysData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState();
@@ -155,14 +159,26 @@ const PaysLivraison = ({navigation, route}) => {
    }, [])
 
 const fetchPays = async () => {
-    const url = "https://godaregroup.com/api/pays/actif";
-    let result = await fetch(`${url}/${item.id}`);
-    result = await result.json();
-    if(result){
-      setPaysData(result)
+    setActivityIndicatorVar(true);
+    try{
+      const url = "https://godaregroup.com/api/pays/actif";
+      let result = await fetch(`${url}/${item.id}`);
+      result = await result.json();
+      if(result){
+        setPaysData(result)
+      }
+    }catch(err) {
+      console.log("error:", err);
     }
+    setActivityIndicatorVar(false)
   }
   console.log(paysData);
+
+  if(ActivityIndicatorVar === true){
+    return (
+      <View style={{justifyContent: 'center', flex: 1}}><ActivityIndicator size={'large'} color="#3292E0" /></View>
+    )
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>

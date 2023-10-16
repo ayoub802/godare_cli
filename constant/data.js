@@ -204,7 +204,7 @@ export const adress = [
         iconTrash: <Feather name='trash-2' size={20} color="#000"/>,
         iconMap: <Feather name='map-pin' size={20} color="#2BA6E9"/>,
         address: "2715 Ash Dr. San Jose, South Dakota 83475",
-        phone: "060224411"
+        address: "060224411"
     },
     {
         id: 2,
@@ -325,3 +325,8 @@ export const productCart = [
         image: Iphone
     },
 ]
+
+
+export function getProduct(id) {
+    return products.find((product) => (product.id == id));
+}

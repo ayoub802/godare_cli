@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, ActivityIndicator, ToastAndroid} from 'react-native'
+import React, {useState, useEffect, useContext} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import France from "../../assets/images/france.png"
@@ -17,6 +17,9 @@ import Empty from '../../components/Empty'
 import { ScrollView } from 'react-native-virtualized-view'
 import GridCard from '../../components/GridCard'
 import { HeaderActions } from '../../components/Header'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 const ShoppingScreen = ({ navigation, route }) => {
      const {value} = route.params;
      const [activeFilter, setActiveFilter] = useState(0);
@@ -25,21 +28,21 @@ const ShoppingScreen = ({ navigation, route }) => {
      const [activetext, setActiveText] = useState('')
 
      useEffect(() => {
-         fetchCategories();
-         fetchProducts();
+        fetchCategories();
+        //  fetchProducts();
         }, [])
         
         const fetchCategories = async () => {
-            let result = await fetch(`https://godaregroup.com/api/categories/actif/${value.value.service.code}/${value.value.id}`);
-            result = await result.json();
-            if(result){
-                setCategoriData(result)
-                let data = result;
+            let result = await axios.get(`https://godaregroup.com/api/categories/actif/${value.value.service.code}/${value.value.id}`);
+            if(result.data){
+                let data = result.data;
+                setCategoriData(data)
 
                 let find = false;
                 data.map((row) => {
                     if(!find){
                         setActiveText(row.id)
+                        fetchProducts(row.id);
                         find = true;
                     }
                 })
@@ -47,10 +50,11 @@ const ShoppingScreen = ({ navigation, route }) => {
         }
                 
         const fetchProducts = async (category = activetext) => {
-            let result = await fetch(`https://godaregroup.com/api/products/categories/actif/${category}/${value.value.id}`);
-            result = await result.json();
-            if(result){
-                setProductsData(result)
+            console.log("id", value.value.id);
+            let result = await axios.get(`https://godaregroup.com/api/products/categories/actif/${category}/${value.value.id}`);
+            let data = result.data;
+            if(data){
+                setProductsData(data)
             }
         }
 
@@ -59,43 +63,40 @@ const ShoppingScreen = ({ navigation, route }) => {
             setActiveText(category);
             setProductsData([]);
         }
+
+        const addToCart = async id => {
+                let itemArray = await AsyncStorage.getItem('cartItems');
+                itemArray = JSON.parse(itemArray);
+                if (itemArray) {
+                let array = itemArray;
+                array.push(id);
+
+                try {
+                    await AsyncStorage.setItem('cartItems', JSON.stringify(array));
+                    ToastAndroid.show(
+                    'Item Added Successfully to cart',
+                    ToastAndroid.SHORT,
+                    );
+                    navigation.navigate('CartScreen');
+                } catch (error) {
+                    return error;
+                }
+                } else {
+                let array = [];
+                array.push(id);
+                try {
+                    await AsyncStorage.setItem('cartItems', JSON.stringify(array));
+                    ToastAndroid.show(
+                    'Item Added Successfully to cart',
+                    ToastAndroid.SHORT,
+                    );
+                    navigation.navigate('CartScreen');
+                } catch (error) {
+                    return error;
+                }
+                }
+          };
         // setActiveText(categoriData.id)
-        console.warn(activetext);
-
-        const RenderProduct = () => {
-            if(productsData.length <= 0){
-                return (
-                    <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                       <ActivityIndicator size={30}/>
-                    </View>
-                        
-                )
-            }
-    
-            else{
-               return 
-                <>
-                    {
-                      activeFilter === 1
-                            ? 
-                            
-                            <FlatList 
-                            data={productsData}
-                            numColumns={2}
-                            keyExtractor={item => item.id}
-                            renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
-                        />
-                        :
-                            <FlatList 
-                            data={productsData}
-                            keyExtractor={item => item.id}
-                            renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
-                            />
-                        }
-                </>
-            }
-        }
-
   return (
     <SafeAreaView style={{ flex: 1}}>
         <ScrollView style={{ flex: 1, paddingBottom: 15, width: "100%"}} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
@@ -124,7 +125,7 @@ const ShoppingScreen = ({ navigation, route }) => {
                         </ScrollView>
                     </View>
 
-                <View style={{marginTop: 30, paddingHorizontal: 5}}>
+                <View style={{marginTop: 10, paddingHorizontal: 5}}>
                     <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center",borderTopLeftRadius: 28, borderTopRightRadius: 28 ,backgroundColor: "#fff", paddingVertical: 27, paddingLeft: 15, paddingRight: 23}}>
                         <View style={{flexDirection:"row", alignItems: "center", gap: 10}}>
                             <TouchableOpacity style={{flexDirection:"row", alignItems: "center", gap: 8}}>
@@ -169,7 +170,7 @@ const ShoppingScreen = ({ navigation, route }) => {
                    {
                     productsData.length <= 0 ? 
                     <>
-                    <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                    <View style={{flex: 1, justifyContent: "flex-end", alignItems: "center"}}>
                        <ActivityIndicator size={30}/>
                     </View>
                     </> 
@@ -183,13 +184,13 @@ const ShoppingScreen = ({ navigation, route }) => {
                             data={productsData}
                             numColumns={2}
                             keyExtractor={item => item.id}
-                            renderItem={({item}) => <GridCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                            renderItem={({item}) => <GridCard item={item} navigation={navigation}/>}
                         />
                         :
                             <FlatList 
-                            data={productsData}
+                            data={products}
                             keyExtractor={item => item.id}
-                            renderItem={({item}) => <ListCard item={item} navigation={() => navigation.navigate('LoginShoppins')}/>}
+                            renderItem={({item}) => <ListCard item={item} navigation={() => addToCart(item.id)}/>}
                             />
                         }
                     </>

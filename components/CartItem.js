@@ -28,8 +28,8 @@ const CartItem = ({ item, index }) => {
                   <View style={{flexDirection: "row",justifyContent: "space-between" ,alignItems: "flex-start", gap: wp(20)}}>
                       <View>
                             <Text style={{ fontSize: 16, fontFamily: "Poppins-Regular", color: "#000"}}>{item.title}</Text>
-                            <Text>{item.color} - {item.stokage} GB</Text>
-                            <Text>Etat: {item.etat}</Text>
+                            {/* <Text>{item.color} - {item.stokage} GB</Text>
+                            <Text>Etat: {item.etat}</Text> */}
                       </View>
                       <TouchableOpacity>
                           <Feather name="trash-2" color="#E10303" size={25}/>
