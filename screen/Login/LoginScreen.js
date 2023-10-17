@@ -1,120 +1,184 @@
-import { View, Text, TextInput, CheckBox, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { HeaderEarth } from '../../components/Header'
-import DropDownPicker from 'react-native-dropdown-picker';
-import PhoneInput from 'react-native-phone-number-input';
-import Button from '../../components/Button';
-import { ScrollView } from 'react-native-virtualized-view';
-
+import { View, Text, StatusBar, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react'
+import LinearGradient from 'react-native-linear-gradient'
+import SmallEarth from "../../assets/images/LOGO_GS.png"
+import Profile from "../../assets/images/profil.png"
+import Lock from 'react-native-vector-icons/Fontisto';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const LoginScreen = ({ navigation }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [current, setCurrent] = useState();
-    const [isSelected, setIsSelected] = useState(false);
-
-    const items = [
-      {
-        label: 'France',
-        value: 'france',
-      },
-      {
-        label: 'France',
-        value: 'germany',
-      },
-      {
-        label: 'France',
-        value: 'italy',
-      },
-  
-    ];
   return (
-    <SafeAreaView style={{ flex: 1}}>
-      <ScrollView style={{paddingBottom: 50}} showsVerticalScrollIndicator={false}>
-         <View style={{flex: 1}}>
-             <HeaderEarth />
+    <LinearGradient
+    colors={['#3885DA', '#29A9EA', '#3A7FD8']}
+    style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }}>
+        <StatusBar backgroundColor="#3885DA" barStyle="auto" />
+        <View style={{    
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexDirection: 'row',
+            gap: 10,}}>
+           <Image source={SmallEarth} style={{width: 48,height: 47,}} resizeMode="center" />
+           <Text style={{    
+            fontFamily: "Roboto-Bold",
+                fontSize: 18,
+                color: '#fff',}}>GS</Text>
+        </View>
+        <View style={{marginTop: windowHeight * 0.1,}}>
+           <View style={{
+                marginTop: windowHeight * 0.02,
+                flexDirection: 'row',
+                backgroundColor: '#fff',
+                width: windowWidth * 0.8,
+                height: windowHeight * 0.05,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 50,
+           }}>
+                <Image source={Profile} style={{
+                    width: 20,
+                    height: 20,
+                    alignSelf: 'center',
+                }}/>
+                  <TextInput
+                      placeholder='E-mail'
+                      style={{
+                        width: windowWidth * 0.57,
+                        // backgroundColor: 'green',
+                        marginLeft: windowWidth * 0.04,
+                        color: '#000',
+                        fontFamily: "Roboto-Regular",
+                      }}
+                      placeholderTextColor="#B0B0C3"
+                      keyboardType="ascii-capable"
+                      keyboardAppearance="default"
+                      autoCapitalize="none"
+                      focusable={true}
+                    />
+           </View>
+           <View style={{
+                marginTop: windowHeight * 0.02,
+                flexDirection: 'row',
+                backgroundColor: '#fff',
+                width: windowWidth * 0.8,
+                height: windowHeight * 0.05,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 50,
+           }}>
+                <Lock name="locked" color={'#042C5C'} size={20}/>
+                  <TextInput
+                      placeholder='Mot De Pass'
+                      style={{
+                        width: windowWidth * 0.57,
+                        // backgroundColor: 'green',
+                        marginLeft: windowWidth * 0.04,
+                        color: '#000',
+                        fontFamily: "Roboto-Regular",
+                      }}
+                      placeholderTextColor="#B0B0C3"
+                      keyboardType="ascii-capable"
+                      keyboardAppearance="default"
+                      autoCapitalize="none"
+                      focusable={true}
+                    />
+           </View>
 
-             <View style={{ marginTop: 30, marginBottom: 12}}>
-                 <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 16, color: "#000", textAlign: "center"}}>Veuillez créer un compte</Text>
-             </View>
+           <TouchableOpacity style={{
+                marginTop: windowHeight * 0.02,
+           }} activeOpacity={0.7}>
+            <Text style={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontFamily: "Roboto-Regular",
+            }}>Mot de passe oublié ?</Text>
+           </TouchableOpacity>
 
-             <View style={{paddingHorizontal: 28}}>
-                <DropDownPicker
-                items={items}
-                open={isOpen}
-                setOpen={() => setIsOpen(!isOpen)}
-                value={current}
-                setValue={(val) => setCurrent(val)}
-                dropDownContainerStyle={{backgroundColor: '#fff', borderColor: "#AAB0B7", fontSize: 54}}
-                style={{ backgroundColor: "#fff", borderColor: "#AAB0B7", fontSize: 54, paddingLeft: 15}}
-                listItemContainerStyle={{ borderBottomColor: "#000"}}
-                placeholder='Civilité'
-                placeholderStyle={{ fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7"}}
-                textStyle={{fontFamily: "Poppins-Regular", fontSize: 14, color: "#000"}}
-                />
-                <View style={{marginTop: 12}}>
-                    <TextInput 
-                      placeholder="Prénom*"
-                      style={{borderWidth: 1, borderColor: "#AAB0B7", paddingLeft: 15, borderRadius: 8,fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7", backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{marginTop: 12}}>
-                    <TextInput 
-                      placeholder="Nom*"
-                      style={{borderWidth: 1, borderColor: "#AAB0B7",fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7", paddingLeft: 15, borderRadius: 8, backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{}}>
-                    <PhoneInput 
-                      placeholder="(201) 555-0128"
-                      placeholderColor="#fff"
-                      placeholderTextColor="#000"
-                      defaultCode='FR'
-                      containerStyle={{flexDirection: "row", alignItems: "center", gap: 5,color: "#fff", backgroundColor: "transparent", width: 370 }}
-                      codeTextStyle={{ display: "none"}}
-                      textContainerStyle={{backgroundColor: "transparent" , padding: 0, color: "#fff",fontFamily: "Poppins-Regular", fontSize: 14 }}
-                      textInputStyle={{borderWidth: 1, height: 60,paddingLeft: 16 ,borderColor: "#AAB0B7",color: "#fff" ,borderRadius: 8, backgroundColor: "#fff"}}
-                      flagButtonStyle={{borderWidth: 1, height: 60 ,borderColor: "#AAB0B7" ,borderRadius: 8, backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{marginTop: 2}}>
-                    <TextInput 
-                      placeholder="E-mail*"
-                      style={{borderWidth: 1, borderColor: "#AAB0B7",fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7", paddingLeft: 15, borderRadius: 8, backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{marginTop: 12}}>
-                    <TextInput 
-                      placeholder="Mot de passe*"
-                      style={{borderWidth: 1, borderColor: "#AAB0B7",fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7", paddingLeft: 15, borderRadius: 8, backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{marginTop: 12}}>
-                    <TextInput 
-                      placeholder="Date de naissance*"
-                      style={{borderWidth: 1, borderColor: "#AAB0B7",fontFamily: "Poppins-Regular", fontSize: 14, color: "#AAB0B7", paddingLeft: 15, borderRadius: 8, backgroundColor: "#fff"}}
-                    />
-                </View>
-                <View style={{marginTop: 24}}>
-                    <View style={{ flexDirection: "row", alignItems: "center", gap: 15}}>
-                          <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
-                                <View style={{width: 24, height: 24, borderColor: "#2BA6E9", borderWidth: 2, borderRadius: 7, padding: 4,justifyContent: "center",alignItems: "center" , backgroundColor: "transparent"}}>
-                                    {isSelected ? <View style={{ backgroundColor: "#2BA6E9", width: 12, height: 12, borderRadius: 3}}></View> : null}
-                                </View>
-                          </TouchableOpacity>
+           <View style={{
+                justifyContent: "center",
+                alignItems: "center"
+           }}>
+                <TouchableOpacity
+                    style={{
+                            backgroundColor: '#042C5C',
+                            borderRadius: 50,
+                            width: windowWidth * 0.6,
+                            height: windowHeight * 0.05,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: windowHeight * 0.02,
+                            elevation: 2,
+                    }}
+                    activeOpacity={0.7}>
+                    <Text style={{
+                            fontSize: 13,
+                            color: '#fff',
+                            // backgroundColor: 'tomato',
+                            width: windowWidth * 0.5,
+                            textAlign: 'center',
+                            fontFamily: "Roboto-Regular",
+                            alignSelf: 'center',
+                    }}>Se connecter</Text>
+                </TouchableOpacity>
 
-                          <Text style={{fontFamily: 'Poppins-Regular', fontSize: 12, color: "#000"}}>Enregistrer les détails de la carte </Text>
-                    </View>
-                </View>
+                <TouchableOpacity
+                    style={{
+                            backgroundColor: '#042C5C',
+                            borderRadius: 50,
+                            width: windowWidth * 0.6,
+                            height: windowHeight * 0.05,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: windowHeight * 0.02,
+                            elevation: 2,
+                    }}
+                    activeOpacity={0.7}
+                    onPress={() => navigation.navigate('SignUp')}
+                    >
+                    <Text style={{
+                            fontSize: 13,
+                            color: '#fff',
+                            // backgroundColor: 'tomato',
+                            width: windowWidth * 0.5,
+                            textAlign: 'center',
+                            fontFamily: "Roboto-Regular",
+                            alignSelf: 'center',
+                    }}>
+                    Pas de compte ? S’inscrire
+                    </Text>
+                </TouchableOpacity>
 
-                <View style={{marginTop: 27}}>
-                   <View style={{ justifyContent: "flex-end", alignItems: 'center', paddingBottom: 72}}>
-                     <Button title="s'inscrire" navigation={() => navigation.navigate('AddCardScreen')}/>
-                   </View>
-                </View>
-             </View>
-         </View>
-      </ScrollView>
-    </SafeAreaView>
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: '#042C5C',
+                        borderRadius: 50,
+                        width: windowWidth * 0.6,
+                        height: windowHeight * 0.05,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: windowHeight * 0.02,
+                        elevation: 2,
+                    }}
+                    activeOpacity={0.7}
+                    >
+                    <Text style={{
+                            fontSize: 13,
+                            color: '#fff',
+                            // backgroundColor: 'tomato',
+                            width: windowWidth * 0.5,
+                            textAlign: 'center',
+                            fontFamily: "Roboto-Regular",
+                            alignSelf: 'center',
+                    }}>
+                    Passer l identification
+                    </Text>
+                </TouchableOpacity>
+           </View>
+        </View>
+    </LinearGradient>
   )
 }
 

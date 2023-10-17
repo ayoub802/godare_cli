@@ -6,6 +6,7 @@ import France from "../assets/images/france.png"
 import Feather from "react-native-vector-icons/Feather"
 import CoteIvoire from "../assets/images/cote_ivoire.png"
 import SmallEarth from "../assets/images/small_earth.png"
+import Flag from 'react-native-flags';
 
 export const HeaderEarth = () => {
   return (
@@ -16,18 +17,22 @@ export const HeaderEarth = () => {
   )
 }
 
-export const HeaderActions = ({ destination, nom_service }) => {
+export const HeaderActions = ({ destination, nom_service, drapeauDepart, drapeauDestination }) => {
   return (
 <View style={{ position: "relative" ,alignItems: "center", backgroundColor: "#2BA6E9", justifyContent: "center", height: hp(12)}}>
               <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Bold"}}>{nom_service}</Text>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
-                      <Image source={France}/>
+                            <View>
+                              <Flag code={drapeauDepart} size={32}/>
+                          </View>
                       <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Regular"}}>France</Text>
                       <Feather name="arrow-up-right" color="#fff" size={22}/>
                   </View>
                   <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
-                      <Image source={CoteIvoire}/>
+                          <View>
+                              <Flag code={drapeauDestination} size={32}/>
+                          </View>
                       <Text style={{ fontSize: 14, color: "#fff", fontFamily: "Roboto-Regular"}}>{destination}</Text>
                       <Feather name="arrow-down-right" color="#fff" size={22}/>
                   </View>

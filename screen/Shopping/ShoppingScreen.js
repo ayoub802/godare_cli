@@ -77,7 +77,7 @@ const ShoppingScreen = ({ navigation, route }) => {
                     'Item Added Successfully to cart',
                     ToastAndroid.SHORT,
                     );
-                    navigation.navigate('CartScreen');
+                    navigation.navigate('SignUp');
                 } catch (error) {
                     return error;
                 }
@@ -90,7 +90,7 @@ const ShoppingScreen = ({ navigation, route }) => {
                     'Item Added Successfully to cart',
                     ToastAndroid.SHORT,
                     );
-                    navigation.navigate('CartScreen');
+                    navigation.navigate('SignUp');
                 } catch (error) {
                     return error;
                 }
@@ -102,7 +102,7 @@ const ShoppingScreen = ({ navigation, route }) => {
         <ScrollView style={{ flex: 1, paddingBottom: 15, width: "100%"}} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
              <View style={{ flex: 1, position: "relative"}}>
               
-               <HeaderActions destination={value.value.destination} nom_service={value.value.service.nom}/>
+               <HeaderActions destination={value.value.destination} nom_service={value.value.service.nom} drapeauDepart={value.value.drapeauDepart} drapeauDestination={value.value.drapeauDestination}/>
                     
                     <View style={{marginTop: 20}}>
                         <ScrollView horizontal={false} scrollEnabled={true} style={{ width: "100%" }}>
@@ -188,9 +188,9 @@ const ShoppingScreen = ({ navigation, route }) => {
                         />
                         :
                             <FlatList 
-                            data={products}
+                            data={productsData}
                             keyExtractor={item => item.id}
-                            renderItem={({item}) => <ListCard item={item} navigation={() => addToCart(item.id)}/>}
+                            renderItem={({item}) => <ListCard item={item} key={item.id} navigation={() => addToCart(item.id)}/>}
                             />
                         }
                     </>

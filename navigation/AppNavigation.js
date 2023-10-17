@@ -16,7 +16,6 @@ import Search from '../screen/Search/Search';
 import ContactScreen from '../screen/ContactScreen/ContactScreen';
 import ProfileScreen from '../screen/Profile/ProfileScreen';
 import Livraison1 from '../screen/LivraisonScreen/Livraison1';
-import LoginScreen from '../screen/Login/LoginScreen';
 import EditProfile from '../screen/Profile/EditProfile';
 import RemiseAvoirScreen from '../screen/Profile/RemiseAvoirScreen';
 import MessageScreen from '../screen/ContactScreen/MessageScreen';
@@ -37,6 +36,8 @@ import CheckoutScreen from '../screen/ChekoutScreen/CheckoutScreen';
 import ColiSuivi from '../screen/Coli/ColiSuivi';
 import VerifyCardChckoutScreen from '../screen/Shopping/VerfiyCardScreen';
 import AddCardChekoutScreen from '../screen/Shopping/AddCardScreen';
+import SingUpScreen from '../screen/Login/SignUpScreen';
+import LoginScreen from '../screen/Login/LoginScreen';
 
 
 const Home = createNativeStackNavigator();
@@ -59,7 +60,7 @@ const AppNavigation = () => {
             backgroundColor: '#2BA6E9',
           },
         }}
-         initialRouteName='Login'
+         initialRouteName='HomeScreen'
         >
         <Tab.Screen
         name='Home'
@@ -90,8 +91,8 @@ const AppNavigation = () => {
                 <Home.Screen name="AddCardScreen" component={AddCardScreen} />
                 <Home.Screen name="VerifyCardScreen" component={VerifyCardScreen} />
                 <Home.Screen name="CommandCours" component={CommandCours} />
-                <Home.Screen name="Login" component={LoginScreen} />
-                <Home.Screen name="LoginShoppins" component={LoginShoppinScreen} />
+                <Home.Screen name="SignUp" component={SingUpScreen} />
+                <Home.Screen name="LoginScreen" component={LoginScreen} />
                 <Home.Screen name="ShoppingScreen" component={ShoppingScreen} />
                 <Home.Screen name="CartScreen" component={CartScreen} />
                 <Home.Screen name="CheckoutScreen" component={CheckoutScreen} />

@@ -101,7 +101,7 @@ const HomeScreen = ({navigation}) => {
                     <CardHome
                       item={item}
                       navigation={() =>
-                        navigation.navigate('PaysLivraison', item)
+                        navigation.navigate('LoginScreen')
                       }
                       key={item.id}
                     />

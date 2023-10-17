@@ -8,6 +8,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import axios from 'axios';
 import { getSelectedService } from '../../hooks/GestionStorage';
 import axiosInstance from '../../axiosInstance';
+import Flag from 'react-native-flags';
+
 const Tab = createBottomTabNavigator();
 
 const PaysLivraison = ({navigation, route}) => {
@@ -215,7 +217,9 @@ const fetchPays = async () => {
                             }} key={item.id}>
                             <View
                               style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                              <Image source={require('../../assets/images/france.png')} />
+                              <View>
+                                <Flag code={item.drapeauDepart} size={32}/>
+                              </View>
                               <Text
                                 style={{
                                   fontSize: 14,
@@ -228,7 +232,9 @@ const fetchPays = async () => {
                             </View>
                             <View
                               style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                              <Image source={require('../../assets/images/mali.png')} />
+                              <View>
+                                <Flag code={item.drapeauDestination} size={32}/>
+                              </View>
                               <Text
                                 style={{
                                   fontSize: 14,

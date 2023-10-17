@@ -11,7 +11,9 @@ import DropDownPicker from 'react-native-dropdown-picker'
 const ListCard = ({ item, index, navigation }) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
   const [current, setCurrent] = useState();
+  const [current2, setCurrent2] = useState();
   const items = [
     {
       label: 'france',
@@ -29,37 +31,26 @@ const ListCard = ({ item, index, navigation }) => {
 
   return (
     <View key={index}  style={{ backgroundColor: "#fff", margin: 5}}>
-      <View style={{flexDirection: "row", alignItems: "flex-start", gap: 10, paddingVertical: 12, paddingLeft: 22}}>
+      <View style={{flexDirection: "row", alignItems: "flex-start", gap: 10, paddingVertical: 12, paddingLeft: 22, paddingRight: 50}}>
             <View>
-              <Image source={item.image} style={{height: hp(22), borderRadius: 22, width: wp(29)}}/>
+              <Image source={{uri: item.productImages[0].url}} style={{height: hp(22), borderRadius: 22, width: wp(29)}}/>
             </View>
             <View style={{flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start"}}>
-                <View style={{backgroundColor: item.bgColor,paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, justifyContent: "center", alignItems: "center", maxWidth: 250}}>
-                  <Text style={{fontFamily: "Poppins-Medium", fontSize: 10, color: item.titleColor,textAlign: "center"}}>{item.title}</Text>
+                <View style={{backgroundColor: item.bgColor,paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, justifyContent: "center", alignItems: "center",}}>
+                  <Text style={{fontFamily: "Poppins-Medium", fontSize: 10, color: item.titleColor,textAlign: "center", maxWidth: 250}}>{item.name}</Text>
                 </View>
 
                 <View style={{flexDirection: "row", alignItems: "center", gap: 5, marginTop: 8}}>
                     <Text style={{fontSize: 13, fontFamily: "Poppins-Medium",color: "#000"}}>
-                        {item.price}€/KG
+                        {item.productSpecificites[0].prix}€/KG
                     </Text>
                     <Text style={{fontSize: 13, fontFamily: "Poppins-Medium",color: "#000"}}>
-                    {item.old_price}€/KG
+                    {item.productSpecificites[0].prixAncien}€/KG
                     </Text>
                 </View>
-                
-                {/* <TouchableOpacity style={{ flexDirection: "row",width: wp(35), backgroundColor: "#F5F5F5", borderRadius: 6, paddingHorizontal: 8,paddingVertical: 8 ,alignItems: "center", justifyContent: "space-between", marginTop: 5}}>
-                    <Text style={{fontFamily: "Poppins-Regular", color: "#04091E", fontSize: 13}}>
-                    Etat
-                    </Text>
-                    <MaterialIcons name="keyboard-arrow-down" size={22} color='#000'/>
-                </TouchableOpacity> */}
-                {/* <View style={{}}>
+                <View style={{}}>
                   <DropDownPicker
-                    items={items.map((item) => (
-                      {
-                        label: item
-                      }
-                    ))}
+                    items={items}
                     open={isOpen}
                     setOpen={() => setIsOpen(!isOpen)}
                     key={item.id}
@@ -86,15 +77,15 @@ const ListCard = ({ item, index, navigation }) => {
                     }}
                     textStyle={{fontFamily: 'Poppins-Regular',textTransform: "capitalize" ,fontSize: 14}}
                   />
-                </View> */}
-                {/* <View style={{marginTop: 5}}>
+                </View>
+                <View style={{marginTop: 5}}>
                   <DropDownPicker
                     items={items}
-                    open={isOpen}
-                    setOpen={() => setIsOpen(!isOpen)}
+                    open={isOpen2}
+                    setOpen={() => setIsOpen2(!isOpen2)}
                     key={item.id}
-                    value={current}
-                    setValue={val => setCurrent(val)}
+                    value={current2}
+                    setValue={val => setCurrent2(val)}
                     dropDownContainerStyle={{
                       backgroundColor: '#F5F5F5',
                       borderColor: 'transparent',
@@ -116,7 +107,7 @@ const ListCard = ({ item, index, navigation }) => {
                     }}
                     textStyle={{fontFamily: 'Poppins-Regular',textTransform: "capitalize" ,fontSize: 14}}
                   />
-                </View> */}
+                </View>
 
                 <View style={{marginTop: 8, width: "100%"}}>
                 <ButtonIcon title="Prendre une photo" Icon={<FontAwesome5 name="file-upload" size={15} color='#4E8FDA'/>}/>
